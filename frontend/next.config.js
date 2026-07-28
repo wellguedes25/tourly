@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  allowedDevOrigins: ['tourly.wguedes.com.br', '*.wguedes.com.br', 'localhost:3000'],
   images: {
     remotePatterns: [
       {
