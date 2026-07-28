@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAI }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Image 
-            src="/logo.png" 
+            src="/logo-transparent.png" 
             alt="Tourly Logo" 
             width={180} 
             height={50} 

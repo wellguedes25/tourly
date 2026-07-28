@@ -39,7 +39,7 @@ export default function LojistaDashboardPage() {
       {/* Topbar */}
       <header className="bg-navy-900 text-white px-8 py-4 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-4">
-          <Image src="/logo.png" alt="Tourly Logo" width={140} height={40} className="h-8 w-auto brightness-200" />
+          <Image src="/logo-white.png" alt="Tourly Logo" width={140} height={40} className="h-8 w-auto object-contain" />
           <span className="text-xs bg-turquoise-500 text-slate-900 font-bold px-3 py-1 rounded-full uppercase">
             Painel do Comerciante
           </span>

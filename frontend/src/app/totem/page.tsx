@@ -11,11 +11,11 @@ export default function TotemPage() {
       <header className="flex items-center justify-between border-b border-slate-800 pb-6 mb-8">
         <div className="flex items-center gap-4">
           <Image 
-            src="/logo.png" 
+            src="/logo-white.png" 
             alt="Tourly Logo" 
             width={240} 
             height={70} 
-            className="h-16 w-auto brightness-200"
+            className="h-16 w-auto object-contain"
           />
           <span className="text-xl font-bold bg-turquoise-500 px-4 py-1 rounded-full text-slate-900">
             Balcão Digital

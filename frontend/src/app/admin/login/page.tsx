@@ -50,11 +50,12 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-slate-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Image
-          src="/logo.png"
+          src="/logo-white.png"
           alt="Tourly Logo"
           width={220}
           height={60}
-          className="mx-auto h-14 w-auto brightness-200 mb-6"
+          priority
+          className="mx-auto h-14 w-auto object-contain mb-6"
         />
         <h2 className="text-3xl font-extrabold text-white">
           Painel de Gestão Tourly
