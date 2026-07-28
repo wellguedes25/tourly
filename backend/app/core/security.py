@@ -1,18 +1,36 @@
+import hashlib
+import secrets
 from datetime import datetime, timedelta
 from typing import Optional, Any, Union
 from jose import jwt
-from passlib.context import CryptContext
 from app.core.config import settings
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 ALGORITHM = "HS256"
 
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
-
 def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+    salt = secrets.token_hex(16)
+    pwd_hash = hashlib.pbkdf2_hmac(
+        'sha256',
+        password.encode('utf-8'),
+        salt.encode('utf-8'),
+        100000
+    ).hex()
+    return f"{salt}${pwd_hash}"
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    try:
+        if "$" not in hashed_password:
+            return False
+        salt, stored_hash = hashed_password.split("$", 1)
+        pwd_hash = hashlib.pbkdf2_hmac(
+            'sha256',
+            plain_password.encode('utf-8'),
+            salt.encode('utf-8'),
+            100000
+        ).hex()
+        return secrets.compare_digest(pwd_hash, stored_hash)
+    except Exception:
+        return False
 
 def create_access_token(subject: Union[str, Any], expires_delta: Optional[timedelta] = None) -> str:
     if expires_delta:

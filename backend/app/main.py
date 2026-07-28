@@ -10,31 +10,39 @@ from app.api.v1.router import api_router
 # Criar tabelas no banco se nao existirem
 Base.metadata.create_all(bind=engine)
 
-# Função de SEED automático de contas de teste
+# Função de SEED automático de contas de teste com sincronização de senha
 def seed_initial_users():
     db = SessionLocal()
     try:
-        if not db.query(User).first():
-            # Conta 1: Gestor Público da Prefeitura
-            admin_prefeitura = User(
+        pref = db.query(User).filter(User.email == "prefeitura@tourly.com.br").first()
+        if not pref:
+            pref = User(
                 email="prefeitura@tourly.com.br",
                 password_hash=get_password_hash("admin123"),
                 full_name="Secretaria de Turismo",
                 role="ADMIN_TENANT"
             )
-            # Conta 2: Lojista / Comerciante
-            lojista = User(
+            db.add(pref)
+        else:
+            pref.password_hash = get_password_hash("admin123")
+
+        loj = db.query(User).filter(User.email == "lojista@tourly.com.br").first()
+        if not loj:
+            loj = User(
                 email="lojista@tourly.com.br",
                 password_hash=get_password_hash("lojista123"),
                 full_name="Pizzaria da Hora",
                 role="LOJISTA"
             )
-            db.add(admin_prefeitura)
-            db.add(lojista)
-            db.commit()
-            print("Contas de teste criadas com sucesso!")
+            db.add(loj)
+        else:
+            loj.password_hash = get_password_hash("lojista123")
+
+        db.commit()
+        print("Contas de teste sincronizadas com sucesso!")
     except Exception as e:
         print(f"Erro no seed de usuarios: {e}")
+        db.rollback()
     finally:
         db.close()
 
