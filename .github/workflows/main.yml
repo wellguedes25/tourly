@@ -1,0 +1,15 @@
+name: Deploy to Coolify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Disparando Webhook do Coolify
+        run: |
+          curl -X GET "https://coolify.wguedes.com.br/api/v1/deploy?uuid=roxOhuj183u8rzngrx50f56v&force=false" \
+          -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}"
