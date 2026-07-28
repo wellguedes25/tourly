@@ -4,5 +4,6 @@ from app.models.company import Company
 from app.models.event import Event
 from app.models.promotion import Promotion
 from app.models.review import Review
+from app.models.user import User
 
-__all__ = ["Tenant", "Category", "Company", "Event", "Promotion", "Review"]
+__all__ = ["Tenant", "Category", "Company", "Event", "Promotion", "Review", "User"]
