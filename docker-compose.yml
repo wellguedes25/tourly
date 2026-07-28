@@ -16,7 +16,7 @@ services:
     restart: always
 
   backend:
-    image: tourly_backend:v1.0.1
+    image: tourly_backend:v1.0.2
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -31,7 +31,7 @@ services:
       - redis
 
   frontend:
-    image: tourly_frontend:v1.0.1
+    image: tourly_frontend:v1.0.2
     build:
       context: ./frontend
       dockerfile: Dockerfile
