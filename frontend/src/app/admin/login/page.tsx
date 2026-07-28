@@ -18,7 +18,7 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      const apiHost = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+      const apiHost = '/api/v1';
       const res = await fetch(`${apiHost}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

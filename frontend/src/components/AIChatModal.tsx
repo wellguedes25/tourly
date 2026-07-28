@@ -25,7 +25,7 @@ export const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => 
     setLoading(true);
 
     try {
-      const apiHost = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+      const apiHost = '/api/v1';
       const res = await fetch(`${apiHost}/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

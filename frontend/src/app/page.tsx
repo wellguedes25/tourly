@@ -14,7 +14,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const apiHost = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+        const apiHost = '/api/v1';
         const res = await fetch(`${apiHost}/companies`);
         const data = await res.json();
         setCompanies(data);
